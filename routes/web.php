@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
 
+Route::view('/docs', 'docs.index');
+
 Route::get('/admin/login', [AuthController::class, 'showLoginForm'])
     ->name('admin.login')
     ->middleware('guest');
