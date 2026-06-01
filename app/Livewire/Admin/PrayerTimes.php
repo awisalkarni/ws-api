@@ -4,6 +4,7 @@ namespace App\Livewire\Admin;
 
 use App\Models\PrayerTime as PrayerTimeModel;
 use App\Models\Zone;
+use Illuminate\Support\Facades\Artisan;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -16,6 +17,23 @@ class PrayerTimes extends Component
     public string $searchDate = '';
 
     public string $zoneFilter = '';
+
+    public bool $syncing = false;
+
+    public function sync(): void
+    {
+        $this->syncing = true;
+
+        try {
+            Artisan::call('solat:sync');
+
+            session()->flash('success', 'Prayer times synced successfully.');
+        } catch (\Exception $e) {
+            session()->flash('error', 'Sync failed: '.$e->getMessage());
+        }
+
+        $this->syncing = false;
+    }
 
     public function render()
     {

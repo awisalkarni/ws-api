@@ -1,6 +1,13 @@
 <div>
     <div class="flex items-center justify-between">
         <h1 class="text-2xl font-bold text-gray-900">Prayer Times</h1>
+        <button wire:click="sync"
+                wire:loading.attr="disabled"
+                wire:target="sync"
+                class="rounded-md bg-gray-800 px-4 py-2 text-sm font-semibold text-white hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed">
+            <span wire:loading.remove wire:target="sync">Sync Now</span>
+            <span wire:loading wire:target="sync">Syncing...</span>
+        </button>
     </div>
 
     <div class="mt-4 flex gap-4">
