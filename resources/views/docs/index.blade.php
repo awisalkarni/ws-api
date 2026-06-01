@@ -36,26 +36,9 @@
             <!-- Register -->
             <h3 class="mt-6 text-lg font-semibold text-gray-800">Register</h3>
             <p class="text-sm text-gray-600">Create an account to receive your API key.</p>
-            <div class="mt-2 overflow-hidden rounded-lg bg-gray-800 text-white">
-                <div class="flex items-center justify-between px-4 py-2 bg-gray-700">
-                    <span class="text-xs font-semibold uppercase tracking-wider text-green-400">POST</span>
-                    <span class="text-sm font-mono">/api/v1/register</span>
-                </div>
-                <div class="p-4">
-                    <p class="text-xs text-gray-400 mb-2">Request Body:</p>
-                    <pre class="text-sm overflow-x-auto"><code>{
-  "name": "Your Name",
-  "email": "you@example.com"
-}</code></pre>
-                    <p class="text-xs text-gray-400 mt-4 mb-2">Response:</p>
-                    <pre class="text-sm overflow-x-auto"><code>{
-  "data": {
-    "name": "Your Name",
-    "email": "you@example.com",
-    "api_key": "ws_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-  }
-}</code></pre>
-                </div>
+            <div class="mt-2 p-4 rounded-lg bg-white border border-gray-200">
+                <p class="text-sm text-gray-600 mb-2">Visit the registration page to sign up and get your API key instantly:</p>
+                <a href="{{ url('/register') }}" class="inline-block rounded-md bg-gray-800 px-4 py-2 text-sm font-semibold text-white hover:bg-gray-700">Register for API Key</a>
             </div>
 
             <!-- List Zones -->

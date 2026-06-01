@@ -1,20 +1,44 @@
 <?php
 
-use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\Consumer\AuthController as ConsumerAuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
 
-Route::view('/docs', 'docs.index');
+Route::view('/docs', 'docs.index')->name('docs');
 
-Route::get('/admin/login', [AuthController::class, 'showLoginForm'])
+Route::get('/register', [ConsumerAuthController::class, 'showRegisterForm'])
+    ->name('consumer.register')
+    ->middleware('guest');
+
+Route::post('/register', [ConsumerAuthController::class, 'register'])
+    ->middleware('guest');
+
+Route::get('/login', [ConsumerAuthController::class, 'showLoginForm'])
+    ->name('consumer.login')
+    ->middleware('guest');
+
+Route::post('/login', [ConsumerAuthController::class, 'login'])
+    ->middleware('guest');
+
+Route::post('/logout', [ConsumerAuthController::class, 'logout'])
+    ->name('consumer.logout')
+    ->middleware('auth');
+
+Route::middleware('auth')->group(function () {
+    Route::livewire('dashboard', 'consumer.dashboard')
+        ->name('consumer.dashboard');
+});
+
+Route::get('/admin/login', [AdminAuthController::class, 'showLoginForm'])
     ->name('admin.login')
     ->middleware('guest');
 
-Route::post('/admin/login', [AuthController::class, 'login'])
+Route::post('/admin/login', [AdminAuthController::class, 'login'])
     ->middleware('guest');
 
-Route::post('/admin/logout', [AuthController::class, 'logout'])
+Route::post('/admin/logout', [AdminAuthController::class, 'logout'])
     ->name('admin.logout')
     ->middleware('auth');
 

@@ -21,7 +21,7 @@ it('shows login page', function () {
 it('redirects authenticated admin from login page', function () {
     $this->actingAs($this->admin)
         ->get('/admin/login')
-        ->assertRedirect('/');
+        ->assertRedirect('/dashboard');
 });
 
 it('authenticates with valid credentials', function () {
